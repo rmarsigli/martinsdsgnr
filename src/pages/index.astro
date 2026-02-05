@@ -97,23 +97,32 @@ const schemaOrg = {
 			<nav class="w-full flex flex-col gap-3" aria-label="Links de redes sociais">
 				{Object.entries(data.links).map(([key, link]) => {
 					const IconComponent = iconComponents[link.icon as keyof typeof iconComponents]
+					const isBehance = key === 'behance'
 					return (
 						<a
 							href={link.url}
 							target="_blank"
 							rel="nofollow noopener noreferrer"
-							class="group flex items-center justify-center gap-3 px-6 py-4 bg-primary hover:bg-light border border-primary hover:border-light rounded-xl transition-all duration-300 shadow-lg hover:shadow-light/20"
+							class={isBehance 
+								? "group flex items-center justify-center gap-3 px-6 py-4 bg-transparent hover:bg-[#1769FF] border-2 border-primary hover:border-[#1769FF] rounded-xl transition-all duration-300 shadow-lg hover:shadow-[#1769FF]/20"
+								: "group flex items-center justify-center gap-3 px-6 py-4 bg-primary hover:bg-light border border-primary hover:border-light rounded-xl transition-all duration-300 shadow-lg hover:shadow-light/20"
+							}
 							aria-label={`Visite meu perfil no ${link.label}`}
 						>
-							<IconComponent class="w-5 h-5 text-bg group-hover:text-primary transition-colors" aria-hidden="true" />
-							<span class="font-medium text-bg group-hover:text-primary transition-colors">
+							<IconComponent class={isBehance 
+								? "w-6 h-6 text-primary group-hover:text-light transition-colors" 
+								: "w-5 h-5 text-bg group-hover:text-primary transition-colors"
+							} aria-hidden="true" />
+							<span class={isBehance 
+								? "font-medium text-primary group-hover:text-light transition-colors" 
+								: "font-medium text-bg group-hover:text-primary transition-colors"
+							}>
 								{link.label}
 							</span>
 						</a>
 					)
 				})}
-			</nav>
-			
+			</nav>	
 		</main>
 	</body>
 </html>
