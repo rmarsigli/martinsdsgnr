@@ -1,17 +1,119 @@
 ---
+import { Image } from 'astro:assets'
+import '../styles/app.css'
+import { data } from '../page.ts'
+import profileImage from '../../public/profile.png'
+import IconBehance from '~icons/mdi/behance'
+import IconWhatsapp from '~icons/simple-icons/whatsapp'
 
+const siteUrl = Astro.site?.toString() || 'https://viniciusmartins.com'
+const pageTitle = `${data.title} ${data.separator} ${data.slogan}`
+const ogImage = `${siteUrl}/banner.png`
+
+const iconComponents = {
+	'~icons/mdi/behance': IconBehance,
+	'~icons/simple-icons/whatsapp': IconWhatsapp
+} as const
+
+const schemaOrg = {
+	"@context": "https://schema.org",
+	"@type": "ProfilePage",
+	"mainEntity": {
+		"@type": "Person",
+		"name": data.title,
+		"description": data.description,
+		"sameAs": Object.values(data.links).map(link => link.url)
+	}
+}
 ---
 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<title>{pageTitle}</title>
+		<meta name="description" content={data.description} />
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&display=swap" rel="stylesheet" />
+		
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		
+		<meta property="og:type" content="profile" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={data.description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:url" content={siteUrl} />
+		<meta property="og:locale" content="pt_BR" />
+		
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={pageTitle} />
+		<meta name="twitter:description" content={data.description} />
+		<meta name="twitter:image" content={ogImage} />
+		
+		<script type="application/ld+json" set:html={JSON.stringify(schemaOrg)} />
 	</head>
-	<body>
-		<h1>Astro</h1>
+	
+	<body class="min-h-screen bg-bg text-light flex items-center justify-center p-4 md:p-8" style="background-image: radial-gradient(circle, rgba(255, 127, 17, 0.1) 1px, transparent 1px); background-size: 20px 20px;">
+		<main class="w-full flex flex-col items-center max-w-md gap-4">
+			<img
+				src="/favicon.svg" 
+				alt="Logo" 
+				class="h-16 md:h-20 w-auto mb-2"
+			/>
+			
+			<div class="flex flex-col items-center gap-6 bg-bg border border-primary/20 rounded-3xl p-8 md:p-12 shadow-2xl">
+				<Image
+					src={profileImage}
+					alt={`Foto de perfil de ${data.title}`}
+					width={200}
+					height={200}
+					class="relative z-10 w-36 h-36 md:w-44 md:h-44 rounded-full object-cover border-4 border-primary"
+					loading="eager"
+					decoding="async"
+				/>
+				
+				<div class="text-center space-y-3 w-full">
+					<h1 class="text-3xl md:text-4xl font-black text-primary">
+						{data.title}
+					</h1>
+					
+					<p class="text-base md:text-lg font-medium text-light">
+						{data.description}
+					</p>
+					
+					<p class="text-sm md:text-base text-light/70 leading-relaxed max-w-sm mx-auto">
+						{data.slogan}
+					</p>
+				</div>
+				
+			</div>
+			
+			<nav class="w-full flex flex-col gap-3" aria-label="Links de redes sociais">
+				{Object.entries(data.links).map(([key, link]) => {
+					const IconComponent = iconComponents[link.icon as keyof typeof iconComponents]
+					return (
+						<a
+							href={link.url}
+							target="_blank"
+							rel="nofollow noopener noreferrer"
+							class="group flex items-center justify-center gap-3 px-6 py-4 bg-primary hover:bg-light border border-primary hover:border-light rounded-xl transition-all duration-300 shadow-lg hover:shadow-light/20"
+							aria-label={`Visite meu perfil no ${link.label}`}
+						>
+							<IconComponent class="w-5 h-5 text-bg group-hover:text-primary transition-colors" aria-hidden="true" />
+							<span class="font-medium text-bg group-hover:text-primary transition-colors">
+								{link.label}
+							</span>
+						</a>
+					)
+				})}
+			</nav>
+			
+		</main>
 	</body>
 </html>
