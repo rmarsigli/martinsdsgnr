@@ -6,6 +6,9 @@ import profileImage from '../../public/profile.png'
 import IconBehance from '~icons/mdi/behance'
 import IconWhatsapp from '~icons/simple-icons/whatsapp'
 
+import '@fontsource/outfit/400.css'
+import '@fontsource/outfit/900.css'
+
 const siteUrl = Astro.site?.toString() || 'https://viniciusmartins.com'
 const pageTitle = `${data.title} ${data.separator} ${data.slogan}`
 const ogImage = `${siteUrl}/banner.png`
@@ -37,9 +40,7 @@ const schemaOrg = {
 		<title>{pageTitle}</title>
 		<meta name="description" content={data.description} />
 		
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;900&display=swap" rel="stylesheet" />
+		<meta name="description" content={data.description} />
 		
 		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
 		<link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
