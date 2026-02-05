@@ -1,19 +1,19 @@
-# Vinicius Martins - Personal Landing Page
+# Vinicius Martins - Professional Links Page
 
-A clean, modern personal landing page built with Astro and Tailwind CSS.
+A clean, modern professional links page built with Astro and Tailwind CSS.
 
-## 🚀 Live Demo
+## Live View
 
 [View Live Site](https://rmarsigli.github.io/martinsdsgnr/)
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - [Astro](https://astro.build) - Static Site Generator
 - [Tailwind CSS v4](https://tailwindcss.com) - Styling
 - [TypeScript](https://www.typescriptlang.org/) - Type Safety
 - [unplugin-icons](https://github.com/unplugin/unplugin-icons) - Icon System
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 ├── public/          # Static assets
@@ -25,20 +25,7 @@ A clean, modern personal landing page built with Astro and Tailwind CSS.
 └── .github/         # CI/CD workflows
 ```
 
-## 🏃 Getting Started
-
-```bash
-# Install dependencies
-pnpm install
-
-# Start dev server
-pnpm dev
-
-# Build for production
-pnpm build
-```
-
-## 📝 Features
+## Features
 
 - ✅ Fully responsive design
 - ✅ SEO optimized (Open Graph, Schema.org)
@@ -46,13 +33,13 @@ pnpm build
 - ✅ Type-safe with TypeScript
 - ✅ Automatic deployment to GitHub Pages
 
-## 🎨 Customization
+## Customization
 
 Edit `src/page.ts` to update:
 - Personal information
 - Social links
 - Metadata
 
-## 📄 License
+## License
 
 MIT
