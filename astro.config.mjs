@@ -5,6 +5,7 @@ import Icons from 'unplugin-icons/vite'
 
 export default defineConfig({
 	site: 'https://rmarsigli.github.io/martinsdsgnr',
+	base: '/martinsdsgnr',
 	vite: {
 		plugins: [
 			tailwindcss(),
