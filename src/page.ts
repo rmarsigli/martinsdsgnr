@@ -6,15 +6,15 @@ export const data: PersonalData = {
   description: "Designer Social Media e Posicionamento Digital Estratégico",
   separator: "·",
   links: {
-    behance: {
-      url: 'https://www.behance.net/martinsdsgnr',
-      label: 'Behance',
-      icon: '~icons/mdi/behance'
-    },
     whatsapp: {
       url: 'https://wa.me/5518991569940?Olá!+Gostaria+de+informações+sobre+seus+serviços',
       label: 'WhatsApp',
       icon: '~icons/simple-icons/whatsapp'
-    }
+    },
+    behance: {
+      url: 'https://www.behance.net/martinsdsgnr',
+      label: 'Veja meu Portfólio',
+      icon: '~icons/mdi/behance'
+    },
   }
 }
